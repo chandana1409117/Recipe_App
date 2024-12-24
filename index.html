@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recipe App </title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                
+                margin: 0;
+            }
+
+            h1 {
+                margin-bottom: 20px;
+            }
+
+            #recipe-list {
+                list-style: none;
+                padding: 10px;
+                margin: 0;
+                gap: 10px;
+                display: flex;
+                
+            }
+
+            .recipe {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+
+            .recipe:hover {
+                background-color: #f9f9f9;
+            }
+
+            #recipe-details {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Recipe App</h1>
+        <ul id="recipe-list"></ul>
+        <div id="recipe-details">
+            <h2 id="recipe-title"></h2>
+            <p id="recipe-description"></p>
+            <button onclick="closeDetails()">Close</button>
+        </div>
+
+        <script>
+            const recipes = [
+                {
+                    title: "Pasta Carbonara",
+                    description:
+                        "Delicious pasta with eggs, cheese, pancetta, and black pepper.",
+                },
+                {
+                    title: "Chicken Alfredo",
+                    description:
+                        "Creamy pasta dish with grilled chicken, Alfredo sauce, and Parmesan cheese.",
+                },
+                {
+                    title: "Vegetable Stir-Fry",
+                    description:
+                        "Healthy stir-fried vegetables with tofu and soy sauce.",
+                },
+                {
+                    title:"Sushi",
+                    description:" Sushi is made by layering vinegared rice with fresh fish, seafood, or vegetables. It is rolled in nori  (seaweed) and sliced into bite-sized pieces"
+                },{
+                    title:"Butter chicken",
+                    description:"This creamy and flavorful curry is made by marinating chicken in yogurt and spices, grilling or frying it, and then cooking it in a rich tomato-based gravy with butter and cream. It is often served with naan or rice"
+                },
+                {
+                    title:"Masala Dosa(south India)",
+                    description:" A thin, crispy fermented rice and urad dal (black gram) batter is spread on a hot griddle to make a dosa"
+                },
+                {
+                    title:"Hyderabadi Biryani",
+                    description:" This iconic biryani is prepared by layering basmati rice with marinated meat (chicken or mutton), fried onions, and aromatic spices. The dish is slow-cooked in a sealed pot to blend flavors"
+                }
+                // Add more recipes as needed
+            ];
+
+            const recipeList = document.getElementById("recipe-list");
+            const recipeDetails = document.getElementById("recipe-details");
+            const recipeTitle = document.getElementById("recipe-title");
+            const recipeDescription =
+                document.getElementById("recipe-description");
+
+            // Display recipe list
+            recipes.forEach((recipe, index) => {
+                const listItem = document.createElement("li");
+                listItem.classList.add("recipe");
+                listItem.textContent = recipe.title;
+                listItem.addEventListener("click", () => showDetails(index));
+                recipeList.appendChild(listItem);
+            });
+
+            function showDetails(index) {
+                const selectedRecipe = recipes[index];
+                recipeTitle.textContent = selectedRecipe.title;
+                recipeDescription.textContent = selectedRecipe.description;
+                recipeDetails.style.display = "block";
+            }
+
+            function closeDetails() {
+                recipeDetails.style.display = "none";
+            }
+        </script>
+    </body>
+</html>
